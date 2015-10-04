@@ -1,0 +1,14 @@
+<!doctype html>
+
+<title>login</title>
+
+{% if username and password %}
+    Your username is {{ username }} <br />
+    Your password is {{ password }} <br />
+{% else %}
+    <form method="post" action="/login">
+        <input type="text" value="username" name="username" />
+        <input type="text" value="password" name="password" />
+        <button type="submit">Give it pls</button>
+    </form>
+{% endif %}
