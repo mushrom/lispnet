@@ -1,11 +1,17 @@
 <!doctype html>
 
-<title>code thing</title>
+<html>
+    <head>
+    <title>code thing</title>
+    </head>
 
-<form method="post" action="/codething/">
-    <textarea name="code" cols=80 rows=25></textarea>
-    <br />
-    <button type="submit">Do things</button>
-</form>
+    <body>
+    <form method="post" action="/codething/">
+        <textarea name="code" cols=80 rows=25></textarea>
+        <br />
+        <button type="submit">Do things</button>
+    </form>
+    <code>curl -F 'code=&lt-' http://lisp.us.to:5000/codething</code>
 
-<code>curl -F 'code=&lt-' http://localhost:5000/codething</code>
+    </body>
+</html>
