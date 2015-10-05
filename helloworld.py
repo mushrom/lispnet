@@ -24,7 +24,8 @@ def remote_run_file( filename ):
         val += subprocess.check_output([ "./runscm.sh", filename, filename ]).decode( "utf8" )
 
     except subprocess.CalledProcessError as e:
-        val += "Program reached resource limits, sry."
+        val += e.output.decode( "utf8" )
+        val += "\nError: program reached resource limits, sorry.\n"
 
     return val
 
@@ -170,5 +171,7 @@ def login():
     return render_template( "login.html", username=None, password=None )
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True)
     #app.run()
+    app.debug=False
+    app.run( host="0.0.0.0", debug=False )
