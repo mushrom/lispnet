@@ -1,0 +1,117 @@
+/* Generic pane rules */
+body {
+    margin: 0;
+    font-family: sans;
+}
+.row, .col { overflow: hidden; position: absolute; }
+.row { left: 0; right: 0; }
+.col { top: 0; bottom: 0; }
+.scroll-x { overflow-x: auto; }
+.scroll-y { overflow-y: auto; }
+
+.left.col { width: 15%; }
+.middle.col { left: 15%; right: 66%; width: 51%; }
+.right.col { margin-left: 66%; margin-right: -34%; width: 34%; }
+.header.row { height: 45px; line-height: 45px; background-color: #5f785f; color: #f8f8f8; padding-left: 10px;}
+.thing.row { height: auto; line-height: auto; top: 30px; }
+.body.row { top: 45px; bottom: 30px; }
+.footer.row { height: 30px; bottom: 0; line-height: 30px; background-color: #5f785f; color: #f8f8f8; padding-left: 10px; }
+.content.row { bottom: 30px; top: 45px; }
+
+.codeedit_head.row {
+    height: 30px;
+    background-color: #404040;
+    color: #dfdfdf;
+    padding: 5px;
+    padding-left: 0px;
+}
+
+.codeedit_head a {
+    color: #dfdff8;
+}
+
+.listhead.row {
+    height: 30px;
+    text-align: center;
+    padding: 5px;
+    color: #dfdfdf;
+    background-color: #404040;
+}
+
+.codelist.row {
+    top: 30px;
+}
+
+#output_box {
+    height: 100%;
+    width:  100%;
+    outline: medium none;
+    border: none;
+    border-left: 1px solid #808080;
+    padding-left: 3px;
+}
+
+#paste_url {
+    font-family: monospace;
+    font-size: 12px;
+    border-bottom: 1px dotted;
+    position: absolute;
+    top: 8px;
+    right: 5px;
+}
+
+.codelist {
+    background-color: #dfdfdf;
+    font-family: monospace;
+    font-size: 12px;
+    margin: 0;
+    height: 100%;
+}
+
+.codelist a {
+    line-height: 20px;
+    padding: 5px;
+}
+
+#codelist_cont {
+    display: none;
+}
+
+#example_cont {
+    background-color: #404040;
+    font-family: monospace;
+    font-size: 12px;
+    margin: 0;
+    height: 100%;
+    display: inline;
+}
+
+.buffer_head.row {
+    height: 30px;
+    padding: 5px;
+    padding-left: 0px;
+    background-color: #404040;
+    color: #dfdfdf;
+}
+
+.buffer.row {
+    top: 30px;
+    height: 100%;
+}
+
+/*
+#uwot {
+    height: 100%;
+    width:  100%;
+}
+*/
+
+/*
+.CodeMirror {
+    min-height: !important 100%;
+}
+
+.CodeMirror-focused {
+    min-height: !important 100%;
+}
+*/

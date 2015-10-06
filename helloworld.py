@@ -73,30 +73,31 @@ def print_file( filename ):
     else:
         return "File does not exist.\n"
 
-@app.route('/')
+@app.route('/netlisp/')
 def hello_world():
     return """<html>
     <head />
     <body>
-        <a href='/hello/'>foo bar</a>
+        <a href='/netlisp/hello/'>foo bar</a>
         <br />
-        <a href='/login'>login thing</a>
+        <a href='/netlisp/login'>login thing</a>
         <br />
-        <a href='/codething'>run code</a>
+        <a href='/netlisp/coderun'>run code</a>
         <br />
-        <a href='/code'>list code</a>
+        <a href='/netlisp/code'>list code</a>
         <br />
-        <a href='/codebrowse'>scriptless code browser</a>
+        <a href='/netlisp/codebrowse'>scriptless code browser</a>
     </body>
     <html>"""
 
-@app.route('/hello/')
-@app.route('/hello/<name>')
+@app.route('/netlisp/hello/')
+@app.route('/netlisp/hello/<name>')
 def foobar(name=None):
     return render_template( "./asdf.html", name=name )
 
-@app.route('/codething/', methods=["POST", "GET"])
-@app.route('/codething/<filename>')
+@app.route('/netlisp/coderun/', methods=["POST", "GET"])
+@app.route('/netlisp/coderun',  methods=["POST", "GET"])
+@app.route('/netlisp/coderun/<filename>')
 def meh(filename=None):
     code = None
 
@@ -108,14 +109,23 @@ def meh(filename=None):
     if filename:
         return Response( run_file( filename ),
                 mimetype="text/plain" )
+        #resp = Response( run_file( filename ),
+        #         mimetype="text/plain" )
+        #resp.headers["Access-Control-Allow-Origin"] = "*"
+        #return resp
+
     elif code:
         return Response( run_code( code ),
                 mimetype="text/plain" )
+        #resp = Response( run_code( code ),
+        #         mimetype="text/plain" )
+        #resp.headers["Access-Control-Allow-Origin"] = "*"
+        #return resp
 
     return render_template( "codething.html", output=None )
 
-@app.route("/code/")
-@app.route("/code/<filename>")
+@app.route("/netlisp/code")
+@app.route("/netlisp/code/<filename>")
 def thing_print_file(filename=None):
     if filename:
         return Response( print_file( filename ), mimetype="text/plain" )
@@ -124,9 +134,12 @@ def thing_print_file(filename=None):
         for thing in os.listdir( "codefiles" ):
             accum += thing + "\n"
 
+        #resp = Response( accum, mimetype="text/plain" )
+        #resp.headers["Access-Control-Allow-Origin"] = "*"
+        #return resp
         return Response( accum, mimetype="text/plain" )
 
-@app.route("/code-io/<filename>")
+@app.route("/netlisp/code-io/<filename>")
 def print_io(filename=None):
     if has_code_file( filename ):
         foo = print_file( filename )
@@ -136,7 +149,7 @@ def print_io(filename=None):
     else:
         return Response( "File does not exist.", mimetype="text/plain" )
 
-@app.route("/codebrowse")
+@app.route("/netlisp/codebrowse")
 def html_code_browser():
     accum = """<!doctype html>
     <html>
@@ -150,9 +163,9 @@ def html_code_browser():
         accum += '<strong>' + thing + '</strong>'
         accum += ', created on ' + created + ' '
         accum += ' || '
-        accum += '<a href="/code/'      + thing + '">View source</a>'
+        accum += '<a href="/netlisp/code/'      + thing + '">View source</a>'
         accum += ' || '
-        accum += '<a href="/codething/' + thing + '">Run code</a>'
+        accum += '<a href="/netlisp/coderun/' + thing + '">Run code</a>'
         accum += '<br />'
 
     accum += "</body></html>"
@@ -160,7 +173,7 @@ def html_code_browser():
     return accum
     
 
-@app.route('/login', methods=["POST", "GET"])
+@app.route('/netlisp/login', methods=["POST", "GET"])
 def login():
     error = None
     if request.method == "POST":
@@ -171,7 +184,7 @@ def login():
     return render_template( "login.html", username=None, password=None )
 
 if __name__ == '__main__':
-    #app.run(debug=True)
-    #app.run()
-    app.debug=False
-    app.run( host="0.0.0.0", debug=False )
+    app.run(debug=True)
+    app.run()
+    #app.debug=False
+    #app.run( host="0.0.0.0", debug=False )

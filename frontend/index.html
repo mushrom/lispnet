@@ -1,0 +1,96 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>foo</title>
+        <meta charset="utf-8"/>
+    </head>
+
+    <body>
+        <link rel="stylesheet" href="js/CodeMirror/lib/codemirror.css">
+
+        <script src="js/CodeMirror/lib/codemirror.js"></script>
+        <script src="js/CodeMirror/mode/scheme/scheme.js"></script>
+        <script src="js/CodeMirror/addon/edit/matchbrackets.js"></script>
+        <script src="js/CodeMirror/addon/search/searchcursor.js"> </script>
+        <script src="js/CodeMirror/addon/dialog/dialog.js"> </script>
+        <script src="js/CodeMirror/keymap/vim.js"></script>
+        <link rel="stylesheet" href="css/style.css">
+
+        <div>
+            <div class="header row">
+                <b>(λ) Lisp interpreter thing</b>
+            </div>
+
+            <div class="content row">
+                <div class="left col">
+                    <!--
+                    <ul>
+                        <li>foo</li>
+                        <li>bar</li>
+                        <li>baz</li>
+                    </ul>
+                    -->
+                    <div class="listhead row">
+                        <a onclick="showExamples( )">Example</a>
+                        |
+                        <a onclick="showCodelist( )">Recent</a>
+                    </div>
+                    <div class="codelist row scroll-y">
+                        <div id="codelist_cont">
+                            Loading...
+                        </div>
+
+                        <div id="example_cont">
+                            <h4>The basics</h4>
+                            <ul>
+                                <li onclick="loadCodeFile('intro.scm')">Intro</li>
+                                <li onclick="loadCodeFile('lists.scm')">Lists</li>
+                                <li onclick="loadCodeFile('vectors.scm')">Vectors</li>
+                            </ul>
+
+                            <h4>More stuff</h4>
+                            <ul>
+                                <li onclick="loadCodeFile('intro.scm')">Intro</li>
+                                <li onclick="loadCodeFile('lists.scm')">Lists</li>
+                                <li onclick="loadCodeFile('vectors.scm')">Vectors</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="middle col">
+                    <div class="codeedit_head row">
+                        <button onclick="runCode()">&gt; Run</button>
+                        <button onclick="getCodeList()">List code</button>
+                        <button onclick="toggleVimMode()" id="vim_button">Vim on</button>
+                        <span id="paste_url">[paste url will appear here]</span>
+                    </div>
+
+                    <div class="thing row col">
+                        <textarea id="uwot">(print "Hello, world!")</textarea>
+                    </div>
+                </div>
+
+
+                <div class="right col">
+                    <div class="buffer_head row">
+                        <button onclick="clearBuffer( )">Clear</button>
+                    </div>
+
+                    <div class="buffer row col">
+                        <textarea id="output_box">[output buffer]</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer row">
+                Some thing here
+            </div>
+        </div>
+
+        <script src="js/main.js"> </script>
+
+    </body>
+</html>
