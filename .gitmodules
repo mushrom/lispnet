@@ -1,3 +1,7 @@
 [submodule "gojira"]
 	path = gojira
 	url = https://github.com/dragontux/gojira.git
+[submodule "frontend/js/CodeMirror"]
+	path = frontend/js/CodeMirror
+	url = https://github.com/dragontux/CodeMirror.git
+	branch = own-mods
