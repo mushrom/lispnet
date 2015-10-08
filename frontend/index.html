@@ -32,28 +32,49 @@
                     </ul>
                     -->
                     <div class="listhead row">
-                        <a onclick="showExamples( )">Example</a>
-                        |
-                        <a onclick="showCodelist( )">Recent</a>
+                        <span class="listbox" id="example_tab" onclick="showTab('example')">
+                            Example
+                        </span>
+
+                        <span class="listbox" id="codelist_tab" onclick="showTab('codelist' )">
+                            Recent
+                        </span>
                     </div>
+
                     <div class="codelist row scroll-y">
                         <div id="codelist_cont">
                             Loading...
                         </div>
 
                         <div id="example_cont">
-                            <h4>The basics</h4>
-                            <ul>
-                                <li onclick="loadCodeFile('intro.scm')">Intro</li>
-                                <li onclick="loadCodeFile('lists.scm')">Lists</li>
-                                <li onclick="loadCodeFile('vectors.scm')">Vectors</li>
+                            <ul class="example_list">
+                                <b>The basics</b>
+                                <div class="indent">
+                                    <li onclick="loadCodeFile('intro.scm')">Intro</li>
+                                    <li onclick="loadCodeFile('lists.scm')">Lists</li>
+                                    <li onclick="loadCodeFile('vectors.scm')">Vectors</li>
+                                </div>
                             </ul>
 
-                            <h4>More stuff</h4>
-                            <ul>
-                                <li onclick="loadCodeFile('intro.scm')">Intro</li>
-                                <li onclick="loadCodeFile('lists.scm')">Lists</li>
-                                <li onclick="loadCodeFile('vectors.scm')">Vectors</li>
+                            <ul class="example_list">
+                                <b>More stuff</b>
+                                <div class="indent">
+                                    <li onclick="loadCodeFile('intro.scm')">Intro</li>
+                                    <li onclick="loadCodeFile('lists.scm')">Lists</li>
+                                    <li onclick="loadCodeFile('vectors.scm')">Vectors</li>
+                                </div>
+                            </ul>
+
+                            <ul class="example_list">
+                                <b>Even more stuff</b>
+                                <div class="indent">
+                                    <li onclick="loadCodeFile('intro.scm')">Intro</li>
+                                    <li onclick="loadCodeFile('lists.scm')">Lists</li>
+                                    <li onclick="loadCodeFile('vectors.scm')">Vectors</li>
+                                    <li onclick="loadCodeFile('intro.scm')">Intro</li>
+                                    <li onclick="loadCodeFile('lists.scm')">Lists</li>
+                                    <li onclick="loadCodeFile('vectors.scm')">Vectors</li>
+                                </div>
                             </ul>
 
                         </div>
@@ -62,9 +83,13 @@
 
                 <div class="middle col">
                     <div class="codeedit_head row">
-                        <button onclick="runCode()">&gt; Run</button>
-                        <button onclick="getCodeList()">List code</button>
-                        <button onclick="toggleVimMode()" id="vim_button">Vim on</button>
+                        <button class="fancy_button" onclick="runCode()">&gt; Run</button>
+                        <button onclick="toggleVimMode()"
+                            class="fancy_button"
+                            id="vim_button">Vim on
+                        </button>
+                        <button class="fancy_button" onclick="clearCode()">Clear</button>
+                        <!-- <button onclick="getCodeList()">List code</button> -->
                         <span id="paste_url">[paste url will appear here]</span>
                     </div>
 
@@ -76,7 +101,7 @@
 
                 <div class="right col">
                     <div class="buffer_head row">
-                        <button onclick="clearBuffer( )">Clear</button>
+                        <button class="fancy_button" onclick="clearBuffer( )">Clear</button>
                     </div>
 
                     <div class="buffer row col">

@@ -7,11 +7,8 @@ function runCode( ){
     var txt = new XMLHttpRequest( );
     txt.onreadystatechange = function( ){
         if ( txt.readyState == 4 && txt.status == 200 ){
-            //out.innerHTML = "<pre>" + txt.responseText + "</pre>";
-            //out.innerHTML += "\n";
-            //out.innerHTML += txt.responseText;
             out.innerHTML = txt.responseText + "\n===============\n\n" + out.innerHTML;
-            var temp = "http://localhost/?paste=" + txt.responseText.split("\n")[0];
+            var temp = "http://lisp.us.to/?paste=" + txt.responseText.split("\n")[0];
             pasteurl.innerHTML = "<a href='" + temp + "'> " + temp + "</a>";
 
         } else if ( txt.readyState == 4 ){
@@ -21,9 +18,7 @@ function runCode( ){
     }
 
     txt.open( "GET", "/netlisp/coderun/?code=" + incode, true );
-    //txt.open( "GET", "LICENSE", true );
     txt.send( );
-    //out.innerHTML = foo.getValue( "<br />\n" );
 };
 
 function getCodeList( ){
@@ -32,8 +27,6 @@ function getCodeList( ){
     var txt = new XMLHttpRequest( );
     txt.onreadystatechange = function( ){
         if ( txt.readyState == 4 && txt.status == 200 ){
-            //out.innerHTML = "<pre>" + txt.responseText + "</pre>";
-            //out.innerHTML = txt.responseText;
             var foo = txt.responseText.split( "\n" );
             var accum = "";
 
@@ -61,11 +54,8 @@ function loadCodeFile( filename ){
         }
     }
 
-    //foo.setValue( "Loading..." );
     txt.open( "GET", "/netlisp/code/" + filename, true );
-    //txt.open( "GET", "LICENSE", true );
     txt.send( );
-    //out.innerHTML = foo.getValue( "<br />\n" );
 
 }
 
@@ -102,42 +92,37 @@ function getUrlParameters( target, decode ){
     return ret;
 };
 
-CodeMirror.commands.save = function(){ runCode( ); };
+function showTab( contname ){
+    target = document.getElementById( contname + "_cont" );
+    tab    = document.getElementById( contname + "_tab" );
 
-var foo = CodeMirror.fromTextArea( document.getElementById( "uwot" ), {
-    value: "(print \"Hello, world!\")",
-    lineNumbers: true,
-    keyMap: "vim",
-    matchBrackets: true,
-});
+    target.style.display = "inline";
+    tab.className = "listbox_selected";
 
-getCodeList( );
+    if ( cur_sel && cur_sel != contname ){
+        old_targ = document.getElementById( cur_sel + "_cont" );
+        old_tab  = document.getElementById( cur_sel + "_tab" );
 
-var curfile = getUrlParameters( "paste", true );
-if ( curfile ){
-    loadCodeFile( curfile );
-}
+        old_targ.style.display = "none";
+        old_tab.className = "listbox";
+    }
 
-function showExamples( ){
-    ex   = document.getElementById( "example_cont" );
-    code = document.getElementById( "codelist_cont" );
+    cur_sel = contname;
 
-    ex.style.display   = "inline";
-    code.style.display = "none";
-}
+    console.log( this );
+    console.log( contname );
 
-function showCodelist( ){
-    ex   = document.getElementById( "example_cont" );
-    code = document.getElementById( "codelist_cont" );
-
-    ex.style.display   = "none";
-    code.style.display = "inline";
+    return false;
 }
 
 function clearBuffer( ){
     var out = document.getElementById( "output_box" );
 
     out.innerHTML = "[output buffer]";
+}
+
+function clearCode( ){
+    foo.setValue( " " );
 }
 
 var in_vim = true;
@@ -158,3 +143,23 @@ function toggleVimMode( ){
     in_vim = !in_vim;
     butt.innerHTML = in_vim? "Vim on" : "Vim off";
 }
+
+CodeMirror.commands.save = function(){ runCode( ); };
+
+var foo = CodeMirror.fromTextArea( document.getElementById( "uwot" ), {
+    value: "(print \"Hello, world!\")",
+    lineNumbers: true,
+    keyMap: "vim",
+    matchBrackets: true,
+});
+
+getCodeList( );
+
+var curfile = getUrlParameters( "paste", true );
+if ( curfile ){
+    loadCodeFile( curfile );
+}
+
+var cur_sel = false;
+
+showTab( "example" );

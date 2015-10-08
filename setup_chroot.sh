@@ -3,8 +3,8 @@
 mkdir "$1"
 
 cd gojira
-./configure --prefix=/usr --sysroot="../$1" --static
-make install
+./configure --prefix=/usr --sysroot="../$1" --static -p -ds
+make uninstall install
 cd ..
 
 mkdir -p "$1/lib64" "$1/code"
