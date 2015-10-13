@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cp "codefiles/$1" "wut/code/$2"
+chmod 0400 "wut/code/$2"
 
 ulimit -m 32000
 ulimit -v 145000

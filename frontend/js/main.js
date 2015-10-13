@@ -17,8 +17,13 @@ function runCode( ){
         }
     }
 
-    txt.open( "GET", "/netlisp/coderun/?code=" + incode, true );
-    txt.send( );
+    //txt.open( "GET", "/netlisp/coderun/?code=" + incode, true );
+    var params = "code=" + incode;
+    txt.open( "POST", "/netlisp/coderun", true );
+    txt.setRequestHeader( "Content-type", "application/x-www-form-urlencoded" );
+    txt.setRequestHeader( "Content-length", params.length );
+    txt.setRequestHeader( "Connection", "close" );
+    txt.send( params );
 };
 
 function getCodeList( ){

@@ -17,3 +17,6 @@ ln -s "`which bash`"        "$1/usr/bin/bash"
 ln -s "`which qemu-x86_64`" "$1/usr/bin/qemu-x86_64"
 
 gcc -shared -fPIC foo.c -o "$1/lib64/libfoo.so"
+
+chmod 0500 wut/usr/bin/gojira
+chmod -R 0400 wut/usr/share/gojira/*
